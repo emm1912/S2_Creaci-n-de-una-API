@@ -5,7 +5,8 @@ class arrayNumbers:
         if number <= 100 and number > 0:
             lst.remove(number)
             print("Conjunto de numeros despues de extracción:")
-            print(lst)
+            for i in range(0, len(lst), 10):
+                print(*lst[i:i + 10])
             n = len(lst)
             total = (n + 1) * (n + 2) / 2
             sum_of_A = sum(lst)
@@ -15,6 +16,10 @@ class arrayNumbers:
 
 if __name__ == '__main__':
     print("Por favor introduce un numero entre 1 y 100:")
-    num = int(input())
-    api = arrayNumbers()
-    api.extract(num)
+    inp = input()
+    if inp.isdigit():
+        num = int(inp)
+        api = arrayNumbers()
+        api.extract(num)
+    else:
+        print("Error no se ingreso un numero")

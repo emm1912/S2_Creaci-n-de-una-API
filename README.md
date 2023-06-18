@@ -43,9 +43,15 @@ numero seleccionado (a valores cada nueva linea) y nso dice el numero extraido r
 ## Para finalizar
 El codigo probado.
 ![Screenshot](/Images/fin.png)
+
 Si se ingresa un numero menor a 100.
+
 ![Screenshot](/Images/fin2.png)
+
 Si se ingresa cero.
+
 ![Screenshot](/Images/fin3.png)
+
 Si no se ingresa un digito.
+
 ![Screenshot](/Images/fin4.png)

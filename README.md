@@ -24,23 +24,21 @@ Especificaciones:
 * La aplicación debe de poder ejecutarse con un argumento introducido por el usuario, que utilice nuestra clase y muestre que pudo calcular que número se extrajo.
 
 Para ejecutar la API usar lo siguiente en la terminal:
+<code>uvicorn main:app --reload</code>
 
-<code>
-uvicorn main:app --reload
-</code>
 
 ![Screenshot](/Images/test1.png)
 
 Al utilizar "--reload" con uvicorn la API se recarga constantemente, en la terminal nos mostrara la ip donde encontraremos la API con su puerto:
-"INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)"
+<code>INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)</code>
 
 Ingresamos la ip "http://127.0.0.1:8000" en nuestro explorador y tendremos los siguientes endpoints disponibles
 
-* "/listAll": Se accede a este endpoint usando -> http://127.0.0.1:8000/listAll y nos devuelve todos los numeros que estan en la lista actualmente.
+### "/listAll": Se accede a este endpoint usando -> http://127.0.0.1:8000/listAll y nos devuelve todos los numeros que estan en la lista actualmente.
 
 ![Screenshot](/Images/listAll.png)
 
-* "/extract": Se accede a este endpoint usando -> http://127.0.0.1:8000/extract, pero para poder probar este endpoint desde el explorador 
+### "/extract": Se accede a este endpoint usando -> http://127.0.0.1:8000/extract, pero para poder probar este endpoint desde el explorador 
 ingresar -> http://127.0.0.1:8000/docs#/default/extractNumber_extract_delete y dar click en el boton superior derecho "Try it out" e ingresar en Parametros el numero a 
 extraer de la lista seguido presionar "Execute".
 
@@ -48,11 +46,11 @@ Si el borrado es satisfactorio nos devolvera una respuesta "Exito!": "Numero Bor
 
 ![Screenshot](/Images/exitoborrado.png)
 
-* "/faltante": Se accede a este endpoint usando -> http://127.0.0.1:8000/faltante solo nos devolvera el numero calculado faltante de la lista.
+### "/faltante": Se accede a este endpoint usando -> http://127.0.0.1:8000/faltante solo nos devolvera el numero calculado faltante de la lista.
 
 ![Screenshot](/Images/faltante.png)
 
-#### PyCharm
+## PyCharm
 El codigo se escribio con IDE PyCharm, se instalaron algunas librerias las cuales se puden agregar desde la siguiente ventana 
 ![Screenshot](/Images/pythonInterpreter.jpg)
 

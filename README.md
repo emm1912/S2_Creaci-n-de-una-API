@@ -34,11 +34,13 @@ Al utilizar "--reload" con uvicorn la API se recarga constantemente, en la termi
 
 Ingresamos la ip "http://127.0.0.1:8000" en nuestro explorador y tendremos los siguientes endpoints disponibles
 
-### "/listAll": Se accede a este endpoint usando -> http://127.0.0.1:8000/listAll y nos devuelve todos los numeros que estan en la lista actualmente.
+### "/listAll": 
+Se accede a este endpoint usando -> http://127.0.0.1:8000/listAll y nos devuelve todos los numeros que estan en la lista actualmente.
 
 ![Screenshot](/Images/listAll.png)
 
-### "/extract": Se accede a este endpoint usando -> http://127.0.0.1:8000/extract, pero para poder probar este endpoint desde el explorador 
+### "/extract": 
+Se accede a este endpoint usando -> http://127.0.0.1:8000/extract, pero para poder probar este endpoint desde el explorador 
 ingresar -> http://127.0.0.1:8000/docs#/default/extractNumber_extract_delete y dar click en el boton superior derecho "Try it out" e ingresar en Parametros el numero a 
 extraer de la lista seguido presionar "Execute".
 
@@ -46,7 +48,8 @@ Si el borrado es satisfactorio nos devolvera una respuesta "Exito!": "Numero Bor
 
 ![Screenshot](/Images/exitoborrado.png)
 
-### "/faltante": Se accede a este endpoint usando -> http://127.0.0.1:8000/faltante solo nos devolvera el numero calculado faltante de la lista.
+### "/faltante": 
+Se accede a este endpoint usando -> http://127.0.0.1:8000/faltante solo nos devolvera el numero calculado faltante de la lista.
 
 ![Screenshot](/Images/faltante.png)
 

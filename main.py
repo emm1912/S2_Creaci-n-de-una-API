@@ -1,25 +1,36 @@
+from fastapi import FastAPI, APIRouter, Query
+app = FastAPI()
+
 class arrayNumbers:
     #SE USO EL METODO DE SUMATORIA DE SERIE (SE DEBE TENER CUIDADO PARA SERIES MAS LARGAS YA QUE PUEDE PROVOCAR OVERFLOW DE LA MEMORIA)
-    def extract(self, number):
-        lst = list(range(1, 101))
-        if number <= 100 and number > 0:
-            lst.remove(number)
-            print("Conjunto de numeros despues de extracción:")
-            for i in range(0, len(lst), 10):
-                print(*lst[i:i + 10])
-            n = len(lst)
-            total = (n + 1) * (n + 2) / 2
-            sum_of_A = sum(lst)
-            return print("El numero que se extrajo fue: {}".format(total - sum_of_A))
-        else:
-            print("El  numero debe ser igual o menor a 100 y mayor a cero")
 
-if __name__ == '__main__':
-    print("Por favor introduce un numero entre 1 y 100:")
-    inp = input()
-    if inp.isdigit():
-        num = int(inp)
-        api = arrayNumbers()
-        api.extract(num)
-    else:
-        print("Error no se ingreso un numero")
+    def __init__(self):
+        self.router = APIRouter()
+        self.router.add_api_route("/listAll", self.listAll, methods=["GET"])
+        self.router.add_api_route("/extract", self.extractNumber, methods=["DELETE"])
+        self.router.add_api_route("/faltante", self.calculateNumber, methods=["GET"])
+        self.lst = list(range(1, 101))
+
+    def listAll(self):
+        return {"List": self.lst}
+
+    def extractNumber(self, number: int = Query(description="Numero a extraer de la lista", gt=0, lt=101)):
+        if number not in self.lst:
+            return {"Error": "El numero no esta en la lista"}
+        self.lst.remove(number)
+        return {"Exito!": "Numero Borrado"}
+
+    def calculateNumber(self):
+        n = len(self.lst)
+        total = (n + 1) * (n + 2) / 2
+        sum_of_A = sum(self.lst)
+        if n == 100:
+            return "No hace falta ningun numero, elimine uno por favor"
+        elif n != 100:
+            return {"El numero faltante es": {total - sum_of_A}}
+
+
+api = arrayNumbers()
+app.include_router(api.router)
+
+

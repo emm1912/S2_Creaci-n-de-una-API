@@ -6,15 +6,15 @@ Ejercicios de prueba para NT, resumen de programas utilizados:
 Estructura del proyecto:
 
 <code>
+├── Images
 ├── main.py
 └── README.md
 
 </code>
 
-
-## Description
-Calcular el numero faltante de un conjunto de los primeros 100 números naturales del cual se extrajo uno.
-
+## Descripción
+Realizar una API que calcule el numero faltante de un conjunto de los primeros 100 números naturales del cual se extrajo uno.
+ 
 Especificaciones:
 * La aplicación se debe implementar con python.
 * Se debe de implementar una clase que represente al conjunto de los primero 100 números naturales.
@@ -23,35 +23,77 @@ Especificaciones:
 * Debe de incluir validación del input de datos (numero, número menor de 100).
 * La aplicación debe de poder ejecutarse con un argumento introducido por el usuario, que utilice nuestra clase y muestre que pudo calcular que número se extrajo.
 
+Para ejecutar la API usar lo siguiente en la terminal:
+
+<code>
+uvicorn main:app --reload
+</code>
+
+![Screenshot](/Images/test1.png)
+
+Al utilizar "--reload" con uvicorn la API se recarga constantemente, en la terminal nos mostrara la ip donde encontraremos la API con su puerto:
+"INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)"
+
+Ingresamos la ip "http://127.0.0.1:8000" en nuestro explorador y tendremos los siguientes endpoints disponibles
+
+* "/listAll": Se accede a este endpoint usando -> http://127.0.0.1:8000/listAll y nos devuelve todos los numeros que estan en la lista actualmente.
+
+![Screenshot](/Images/listAll.png)
+
+* "/extract": Se accede a este endpoint usando -> http://127.0.0.1:8000/extract, pero para poder probar este endpoint desde el explorador 
+ingresar -> http://127.0.0.1:8000/docs#/default/extractNumber_extract_delete y dar click en el boton superior derecho "Try it out" e ingresar en Parametros el numero a 
+extraer de la lista seguido presionar "Execute".
+
+Si el borrado es satisfactorio nos devolvera una respuesta "Exito!": "Numero Borrado".
+
+![Screenshot](/Images/exitoborrado.png)
+
+* "/faltante": Se accede a este endpoint usando -> http://127.0.0.1:8000/faltante solo nos devolvera el numero calculado faltante de la lista.
+
+![Screenshot](/Images/faltante.png)
+
 #### PyCharm
-El codigo se escribio con IDE PyCharm, no se necesitaron librerias extra. 
+El codigo se escribio con IDE PyCharm, se instalaron algunas librerias las cuales se puden agregar desde la siguiente ventana 
+![Screenshot](/Images/pythonInterpreter.jpg)
+
+Accede a esta ventana desde File -> Settings -> Project (name) -> Python Interpreter.
+
+Las librerias necesarias son:
+* fastapi 0.98.0
+* uvicorn 0.22.0
+
+###### Tambien se pueden instalar de manera manual con el archivo "requirements.txt" si se requiere.
 
 ## Comentarios
-La parte mas interesante de este ejercicio fue encontrar el metodo de obtener el numero que se extrae de la lista de los 100 numeros naturales, ya que hay diversas maneras:
+Fue muy interesante investigar como poder mandar llamar el metodo de una clase con "FastApi" ya que es la primera vez que utilizo dicha libreria (he utilizado django),
+ademas analizar cuales verbos HTTP serian los mas adecuados de utilizar.
+
+Se utilizaron los siguientes verbos HTTP:
+* GET: Para obtener la lista completa de numeros y para pedir al metodo "extractNumber" (endpoint "/faltante") nos devuelva el numero faltante calculado de la lista.
+* DELETE: Para eliminar un numero deseado de la lista.
+
+Otra parte interesante de este ejercicio fue encontrar el metodo para calcular el numero que se extrajo de la lista, ya que hay diversas maneras:
 * Utilizando la formula de sumatoria
 * Utilizando la tecnica de XOR
 * Utilizando la tecnica de Hashing
 
-Se recomienda para conjuntos mas largos utilizar la tecnica de XOR ya que no hay riesgo de que ocurra un desborde de memoria si fuera un conjunto muy largo y este riesgo
-tambien existe con la tecnica de Hashing.
+Se recomienda para conjuntos mas largos utilizar la tecnica de XOR ya que no hay riesgo de que ocurra un desborde de memoria si fuera un conjunto muy largo (este riesgo
+tambien existe con la tecnica de Hashing).
 
-Pequeña descripción de uso:
-Al iniciar el programa este pide un numero a retirar, el cual se remueve de la lista y se calcula por medio de la formula de sumatoria. Seguido nos muestra la lista sin el
-numero seleccionado (a valores cada nueva linea) y nso dice el numero extraido resultado del calculo.
+## Para finalizar imagenes de algunas excepciones.
 
+Si se ingresa un numero mayor a 100.
 
-## Para finalizar
-El codigo probado.
-![Screenshot](/Images/fin.png)
+![Screenshot](/Images/mas101.png)
 
-Si se ingresa un numero menor a 100.
+Si se ingresa un numero menor a cero.
 
-![Screenshot](/Images/fin2.png)
+![Screenshot](/Images/cero.png)
 
-Si se ingresa cero.
+Si ya se borro el numero en la lista.
 
-![Screenshot](/Images/fin3.png)
+![Screenshot](/Images/yaborrado.png)
 
-Si no se ingresa un digito.
+Si aun no se borra ningun numero y se usa el endpoint "/faltante".
 
-![Screenshot](/Images/fin4.png)
+![Screenshot](/Images/notmissing.png)
